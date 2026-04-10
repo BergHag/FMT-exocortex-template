@@ -180,8 +180,8 @@ done
 #### 4. Автоматические шаги (скрипт `day-close.sh`)
 
 ```bash
-# Запуск одной коман��ой:
-{{WORKSPACE_DIR}}/FMT-exocortex-template/scripts/day-close.sh
+# Запуск одной командой (путь через $IWE_SCRIPTS — см. DP.FM.009):
+"$IWE_SCRIPTS/day-close.sh"
 ```
 
 Скрипт выполняет:
