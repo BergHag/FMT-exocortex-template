@@ -19,7 +19,9 @@ echo "Генерация манифеста v$VERSION..."
 
 # Файлы/директории, которые НЕ включаются в манифест обновлений
 # seed/ — только при setup, README.md — пользователь кастомизирует,
-# settings.local.json — персональный, .gitkeep — маркеры
+# settings.local.json — персональный, .gitkeep — маркеры,
+# extensions/*.after.md, extensions/*.before.md, extensions/*.checks.md, extensions/mcp-user.json —
+# пользовательское пространство (update.sh явно не трогает, см. update.sh §"Не затрагивается")
 EXCLUDE_PATTERNS=(
     "seed/"
     ".claude/settings.local.json"
@@ -29,9 +31,21 @@ EXCLUDE_PATTERNS=(
     ".DS_Store"
 )
 
-# Только корневой README.md (не roles/*/README.md и т.д.)
+# Точные пути, которые НЕ обновляются через update.sh:
+# README.md, README.en.md — витрина форка, пользователь кастомизирует под себя
+# CONTRIBUTING.md — для контрибьюторов апстрима, не для пользователей
+# LICENSE — юридический документ, форк может иметь свою лицензию
+# params.yaml — пользовательские флаги протоколов (update.sh явно не трогает)
+# extensions/day-close.after.md, extensions/mcp-user.json — пример/конфиг в пользовательском
+#   пространстве extensions/; update.sh обещает «не трогать extensions/» (см. extensions/README.md)
 EXCLUDE_EXACT=(
     "README.md"
+    "README.en.md"
+    "CONTRIBUTING.md"
+    "LICENSE"
+    "params.yaml"
+    "extensions/day-close.after.md"
+    "extensions/mcp-user.json"
 )
 
 # Собираем файлы
